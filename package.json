@@ -27,7 +27,9 @@
     "@expo-google-fonts/noto-sans-jp": "^0.2.3",
     "@expo-google-fonts/shippori-mincho": "^0.2.3",
     "@react-navigation/bottom-tabs": "^7.0.0",
-    "@react-navigation/native": "^7.0.0"
+    "@react-navigation/native": "^7.0.0",
+    "microcms-js-sdk": "^3.1.2",
+    "react-native-render-html": "^6.3.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.0",

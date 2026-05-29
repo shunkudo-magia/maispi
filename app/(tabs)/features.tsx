@@ -1,29 +1,38 @@
-import React from 'react';
-import { ScrollView, View, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, View, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Typography } from '@/components/ui/Typography';
 import { Colors, CategoryColors, CategoryKey, FontFamily, FontSize } from '@/constants';
-
-const ISSUES: { id: string; category: CategoryKey; title: string; subtitle: string }[] = [
-  { id: 'love-01',   category: 'love',   title: '愛を引き寄せる月の引力',    subtitle: '2025年7月号' },
-  { id: 'money-01',  category: 'money',  title: '豊かさを解放するリセット術', subtitle: '2025年7月号' },
-  { id: 'family-01', category: 'family', title: '家族の絆を深める夏至の智慧', subtitle: '2025年7月号' },
-  { id: 'body-01',   category: 'body',   title: '身体と対話する内なる声',    subtitle: '2025年7月号' },
-];
+import { getFeatures, type Feature } from '@/lib/cms';
 
 export default function FeaturesScreen() {
+  const [features, setFeatures] = useState<Feature[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    getFeatures()
+      .then(setFeatures)
+      .catch(() => setError('特集の取得に失敗しました'))
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <SafeAreaView style={styles.root} edges={['top']}>
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <Typography variant="heading" style={styles.pageTitle}>特集</Typography>
-        {ISSUES.map((issue) => {
-          const cat = CategoryColors[issue.category];
+
+        {loading && <ActivityIndicator color={Colors.primary} style={styles.spinner} />}
+        {error && <Typography variant="caption" style={styles.errorText}>{error}</Typography>}
+
+        {features.map((f) => {
+          const cat = CategoryColors[f.category as CategoryKey] ?? CategoryColors.love;
           return (
             <TouchableOpacity
-              key={issue.id}
+              key={f.id}
               style={styles.card}
-              onPress={() => router.push(`/feature/${issue.id}`)}
+              onPress={() => router.push(`/feature/${f.id}`)}
               activeOpacity={0.75}
             >
               <View style={[styles.accent, { backgroundColor: cat.bg }]} />
@@ -32,11 +41,17 @@ export default function FeaturesScreen() {
                   {cat.label}
                 </Typography>
                 <Typography variant="subheading" style={styles.issueTitle}>
-                  {issue.title}
+                  {f.title}
                 </Typography>
-                <Typography variant="caption">{issue.subtitle}</Typography>
+                <Typography variant="caption">{f.subtitle}</Typography>
               </View>
-              <View style={[styles.thumbnail, { backgroundColor: cat.light }]} />
+              {f.coverImage ? (
+                // eslint-disable-next-line @typescript-eslint/no-require-imports
+                <View style={[styles.thumbnail, { backgroundColor: cat.light }]} />
+                // TODO: replace with <Image source={{ uri: f.coverImage.url }} />
+              ) : (
+                <View style={[styles.thumbnail, { backgroundColor: cat.light }]} />
+              )}
             </TouchableOpacity>
           );
         })}
@@ -49,6 +64,8 @@ const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: Colors.backgroundAlt },
   content: { padding: 16, gap: 12, paddingBottom: 40 },
   pageTitle: { marginBottom: 8 },
+  spinner: { marginTop: 40 },
+  errorText: { color: Colors.error, textAlign: 'center', marginTop: 24 },
   card: {
     flexDirection: 'row',
     backgroundColor: Colors.white,
