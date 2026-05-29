@@ -73,13 +73,15 @@ export default function ArticleScreen() {
           </Typography>
 
           {/* Published date */}
-          <Typography variant="caption" style={styles.date}>
-            {new Date(article.publishedAt).toLocaleDateString('ja-JP', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </Typography>
+          {article.publishedAt && (
+            <Typography variant="caption" style={styles.date}>
+              {new Date(article.publishedAt).toLocaleDateString('ja-JP', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </Typography>
+          )}
 
           {/* Divider */}
           <View style={styles.divider} />
