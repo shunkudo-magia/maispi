@@ -1,75 +1,65 @@
 # 開発との確認事項と必要アクション（草案）
 
-> 本書はコード（`src/lib/cms/*` / `ArticleBody.tsx` / `.env.example`）を根拠にした **草案** です。各項目を定例MTGで開発と確認します。
+> 開発・インフラ面で **確定/調整が必要な事項** をまとめた **草案** です。サーバ・CMSは**未確定**で、決定すべきことが多い状態です。
+> 関連: [インフラ洗い出し](./infra-launch-checklist.md) / [機能仕様](./feature-spec.md)。最終更新: 2026-06-03。
 
-## 1. microCMS スキーマの確認
+## 1. プラットフォーム前提（要整理）
 
-アプリ側のコードは以下の型・APIを前提にしています（`src/lib/cms/types.ts` / `src/lib/cms/api.ts`）。**CMS側の実スキーマが一致しているか要確認。**
+- **直近ローンチ = Webメディア（Vercel）**。`d-lips-style`ベースの静的サイト。
+- **将来 = RN/Expoアプリ**。microCMS連携を実装済み（下記4）。
+- ⚠️ Webとアプリで **コンテンツ管理・ブランドカラー・カテゴリ体系** が分かれている。共通化するかを決める。
 
-### `features`（特集）API
+## 2. サーバー / バックエンド（未確定）
 
-| アプリ側フィールド | 型 | CMS側確認事項 |
-|--------------------|----|----|
-| `id` | string | コンテンツID |
-| `title` | string | テキストフィールドで存在するか |
-| `category` | `love/money/family/body/work/spirit` | **セレクト等で値が一致しているか** |
-| `subtitle` | string | `YYYY年M月号` 形式の運用で合意できるか |
-| `coverImage` | image（任意） | フィールド名・画像であるか |
+| 確認事項 | 状態 |
+|----------|------|
+| 本番ホスティングをVercelで確定するか | 未確定 |
+| 動的機能（コメント/いいね/会員）のバックエンド・API | 未確定 |
+| DB（保存先・選定） | 未確定 |
+| 契約名義・費用負担部署 | 未確定（[インフラ洗い出し](./infra-launch-checklist.md)） |
 
-### `articles`（記事）API
+> 匿名コメント・いいね・会員登録は **バックエンド/DBが前提**。技術選定（BaaS: Firebase/Supabase等 or 自前）をMTGで決める。
 
-| アプリ側フィールド | 型 | CMS側確認事項 |
-|--------------------|----|----|
-| `id` | string | コンテンツID |
-| `title` | string | — |
-| `body` | richtext(HTML) | リッチエディタで `p/h2/h3/a/strong` を出力できるか |
-| `category` | カテゴリ6種 | features と同じ選択肢か |
-| `featureId` | string | **特集への参照フィールド名が `feature` か要確認** |
-| `thumbnail` | image（任意） | — |
+## 3. CMS（未確定）
 
-> アプリは記事を `filters: feature[equals]{featureId}` で取得しています（`api.ts:23`）。**CMSの参照フィールドの API 名が `feature` であることが前提。** ここがずれると記事が取得できません。
+- 現状は使わない想定だが **未確定**。記事更新の運用ルール・体制も未策定。
+- 候補: microCMS（アプリ側に連携実装あり）/ 他ヘッドレスCMS / 静的HTML直編集。
+- Webとアプリで共通CMSにするかも論点。
 
-## 2. richtext の許可タグ設定
+## 4. RN/Expoアプリの microCMS 連携（実装済み・将来トラック）
 
-- アプリでスタイル定義があるのは `p / h2 / h3 / a / strong` のみ（[執筆ルール](./writing-guidelines.md)）。
-- **microCMS のリッチテキスト「ツールバー設定」で、上記以外のタグ（リスト・引用・画像・テーブル等）を編集者が使えないよう制限できるか** を開発・CMS管理者に確認。
-- 画像の本文埋め込み（`<img>`）対応が必要なら、`ArticleBody.tsx` の `tagsStyles` / `renderers` 追加が必要。
+アプリは以下を前提に実装済み（`src/lib/cms/types.ts` / `api.ts`）。CMS採用時に確認:
 
-## 3. 環境変数・本番APIキー
+- エンドポイント: `features` / `articles`。記事は `feature[equals]{featureId}` でフィルタ取得。
+- **特集への参照フィールドのAPI名が `feature` であること**が前提（ずれると記事取得不可）。
+- カテゴリ値: `love/money/family/body/work/spirit`（小文字キー）。
+- richtext許可タグ: `p/h2/h3/a/strong` のみアプリ側でスタイル定義（[執筆ルール](./writing-guidelines.md)）。
+- 環境変数: `EXPO_PUBLIC_MICROCMS_SERVICE_DOMAIN` / `EXPO_PUBLIC_MICROCMS_API_KEY`（`.env.example`）。未設定時はモックにフォールバック。
 
-`.env.example` 準拠で本番値の受け渡しを確認:
+### アプリ側 未実装TODO（将来）
+- オンボーディング完了フラグ保存（`app/onboarding.tsx:49`）/ 初回起動判定（`app/index.tsx`）
+- 診断フル版の質問セット（`app/diagnosis/flow.tsx:26`）
+- 特集カバー画像表示（`app/(tabs)/features.tsx:51`）
+- ログ画面 / 設定画面（`app/(tabs)/log.tsx` / `settings.tsx`）
 
-```
-EXPO_PUBLIC_MICROCMS_SERVICE_DOMAIN=（本番サービスドメイン）
-EXPO_PUBLIC_MICROCMS_API_KEY=（本番APIキー）
-```
+## 5. 計測・SEO（Web）
+- GA4 / GSC / sitemap.xml / robots.txt（[インフラ洗い出し](./infra-launch-checklist.md) 4）。実装担当・期限を確定。
 
-- [ ] 本番 microCMS のサービスドメイン / APIキーの発行・共有方法
-- [ ] APIキーの権限（GET のみで足りるか）
-- [ ] 未設定時はモックにフォールバックする挙動（`isCmsConfigured`）を本番ビルドでどう扱うか
+## 6. 開発 ⇄ 関係者 やり取りリスト
 
-## 4. 未実装機能の優先度すり合わせ
+### 依頼（開発外への依頼）
+- ドメイン my-spi.com 取得 → **大河内さん**
+- 問い合わせメール発行 → 情シス
+- 法務ページ記載情報・表現確認 → 法務/総務
+- サーバ/DB/外部サービス契約 → 経理/契約担当
 
-[ローンチロードマップ](./launch-roadmap.md)の開発タスクについて、ローンチ必須かどうかを確認:
+### 開発で決めること
+- サーバ/バックエンド/DBの技術選定
+- CMS採用可否と運用設計
+- 追加機能（コメント/いいね）の実装方式とモデレーション
+- 会員登録の認証方式・セキュリティ・データ設計（[機能仕様](./feature-spec.md)）
 
-- [ ] オンボーディング完了フラグ保存（`app/onboarding.tsx:49`）
-- [ ] 初回起動判定（`app/index.tsx`）
-- [ ] 診断フル版の質問セット（`app/diagnosis/flow.tsx:26`）
-- [ ] 特集カバー画像表示（`app/(tabs)/features.tsx:51`）
-- [ ] ログ画面 / 設定画面（`app/(tabs)/log.tsx` / `settings.tsx`）
-
-## 5. 編集 ⇄ 開発 やり取りリスト
-
-### 編集 → 開発（依頼）
-
-- microCMS 本番環境の準備とAPIキー共有
-- richtext ツールバーのタグ制限設定
-- 特集カバー画像・記事サムネイルの表示対応可否と推奨画像サイズ
-- 入稿内容のプレビュー手段（実機 or プレビューURL）の提供
-
-### 開発 → 編集（確認）
-
-- カテゴリ選択肢の値（小文字キー）の最終確定
-- `subtitle` = 号表記フォーマットの合意
-- 特集参照フィールド名（`feature`）の確定
-- ローンチ必須機能の優先度合意
+## 7. MTGで決めること
+- [ ] β公開(6/10)で動的機能を出すか（静的のみで先行公開か）
+- [ ] サーバ・DB・CMSの方針
+- [ ] Web/アプリの共通化範囲（コンテンツ・カラー・カテゴリ）
