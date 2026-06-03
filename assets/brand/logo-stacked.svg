@@ -1,0 +1,25 @@
+<svg width="260" height="300" viewBox="0 0 260 300" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="まいすぴ">
+  <defs>
+    <linearGradient id="maispiCrescent" x1="20" y1="14" x2="70" y2="86" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ef9bb8"/>
+      <stop offset="1" stop-color="#d4567f"/>
+    </linearGradient>
+    <linearGradient id="maispiSpark" x1="60" y1="32" x2="86" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffd9e6"/>
+      <stop offset="1" stop-color="#f6a9c4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- シンボルマーク（中央上） -->
+  <g transform="translate(80,20)">
+    <path d="M62 16 A34 34 0 1 0 62 84 A50 50 0 0 1 62 16 Z" fill="url(#maispiCrescent)"/>
+    <path d="M73 31 Q75.3 47.7 88 50 Q75.3 52.3 73 69 Q70.7 52.3 58 50 Q70.7 47.7 73 31 Z" fill="url(#maispiSpark)"/>
+    <circle cx="84" cy="30" r="3" fill="#f6a9c4" opacity="0.9"/>
+    <circle cx="80" cy="70" r="2" fill="#f6a9c4" opacity="0.8"/>
+  </g>
+
+  <!-- ワードマーク -->
+  <text x="130" y="258" text-anchor="middle"
+        font-family="'Shippori Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif"
+        font-weight="700" font-size="62" letter-spacing="3" fill="#da668e">まいすぴ</text>
+</svg>

@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { FortuneCard } from '@/components/home/FortuneCard';
 import { Card } from '@/components/ui/Card';
 import { Typography } from '@/components/ui/Typography';
+import { Logo } from '@/components/ui/Logo';
 import { Colors, CategoryColors, CategoryKey, FontFamily, FontSize } from '@/constants';
 import { useMoonAge } from '@/hooks/useMoonAge';
 import { getMoonPhaseName } from '@/utils/fortune';
@@ -25,7 +26,7 @@ export default function HomeScreen() {
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View style={styles.header}>
-          <Typography style={styles.logo}>まいすぴ</Typography>
+          <Logo variant="horizontal" size={30} />
           <View style={styles.moonBadge}>
             <Typography variant="caption">{phaseName}</Typography>
           </View>
@@ -84,11 +85,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginBottom: 4,
-  },
-  logo: {
-    fontFamily: FontFamily.minchoBold,
-    fontSize: FontSize.xl,
-    color: Colors.primary,
   },
   moonBadge: {
     paddingHorizontal: 12,
