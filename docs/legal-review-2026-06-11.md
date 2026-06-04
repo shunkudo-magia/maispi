@@ -24,6 +24,9 @@ Webメディア側（Vercel / d-lips-style ベース）の法務4ページHTML�
 掲載内容は `src/constants/legal.ts` に集約。`BusinessInfo` の値を差し替えるだけで
 全ページに反映される構造にしてあります。
 
+> Webメディア側に貼り付ける本文HTMLは `docs/web-legal-pages.html` に用意しました
+> （アプリと同一の確定値・文言／未確定値は `class="pending"` でマーク）。
+
 ---
 
 ## 2. 記入済み（確定）の事項
