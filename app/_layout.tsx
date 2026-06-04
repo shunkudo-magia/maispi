@@ -49,6 +49,7 @@ export default function RootLayout() {
         <Stack.Screen name="article/[id]" options={{ title: '' }} />
         <Stack.Screen name="diagnosis/flow" options={{ title: '診断', headerBackTitle: '' }} />
         <Stack.Screen name="diagnosis/result" options={{ title: '診断結果', headerBackTitle: '' }} />
+        <Stack.Screen name="legal/[doc]" options={{ title: '' }} />
       </Stack>
       <StatusBar style="dark" />
     </>

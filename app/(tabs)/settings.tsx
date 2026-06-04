@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { ScrollView, View, StyleSheet, Switch, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { router } from 'expo-router';
 import { Typography } from '@/components/ui/Typography';
 import { Card } from '@/components/ui/Card';
 import { Colors, FontFamily, FontSize } from '@/constants';
+import { LegalLinks } from '@/constants/legal';
 
 export default function SettingsScreen() {
   const [morningNotif, setMorningNotif] = useState(true);
@@ -62,8 +64,13 @@ export default function SettingsScreen() {
         {/* About */}
         <Card style={styles.section}>
           <Typography variant="label" style={styles.sectionLabel}>アプリについて</Typography>
-          <SettingRow label="プライバシーポリシー" onPress={() => {}} />
-          <SettingRow label="利用規約" onPress={() => {}} />
+          {LegalLinks.map((link) => (
+            <SettingRow
+              key={link.slug}
+              label={link.label}
+              onPress={() => router.push({ pathname: '/legal/[doc]', params: { doc: link.slug } })}
+            />
+          ))}
           <SettingRow label="バージョン" value="0.1.0" />
         </Card>
       </ScrollView>
