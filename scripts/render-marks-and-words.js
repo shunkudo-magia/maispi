@@ -184,3 +184,28 @@ function write(svg, out) {
 }
 write(markBoard, 'assets/brand/marks-20.png');
 write(wordBoard, 'assets/brand/wordmarks-20.png');
+
+// ===== 全マークをローズで統一した一覧 =====
+const ROSE = { c1: '#ef9bb8', c2: '#d4567f', accent: '#f6a9c4' };
+let roseDefs = `<linearGradient id="rose" x1="20" y1="14" x2="80" y2="86" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${ROSE.c1}"/><stop offset="1" stop-color="${ROSE.c2}"/></linearGradient>`;
+let roseCells = '';
+const MARK_NAMES = ['三日月＋きらめき', '三日月のみ', '三日月＋星屑', '四芒星', '五芒星', '三日月＋満ちる円', 'きらめき三連', '宝石', '蓮', '満月＋きらめき', '三日月アウトライン', '太陽', 'リング', '三日月＋多きらめき', '六芒星', '月相3つ', 'コンパス', '渦巻き', '花4弁', '山＋月'];
+MARK_SHAPES.forEach((shape, i) => {
+  const c = i % cols, row = Math.floor(i / cols);
+  const x = padX + c * (cellW + gapX), y = padTop + row * (cellH + gapY);
+  const num = String(i + 1).padStart(2, '0');
+  const cx = cellW / 2 - 60;
+  roseCells += `<g transform="translate(${x},${y})">
+    <rect width="${cellW}" height="${cellH}" rx="18" fill="#ffffff" stroke="#e8e0e8"/>
+    <g transform="translate(${cx},32) scale(1.32)">${shape('url(#rose)', ROSE.accent)}</g>
+    <text x="${cellW / 2}" y="180" text-anchor="middle" font-family="Zen Kaku Gothic New" font-size="14" fill="#9b92a4">${num} · ${MARK_NAMES[i]}</text>
+  </g>`;
+});
+const roseBoard = `<svg width="${boardW}" height="${boardH}" viewBox="0 0 ${boardW} ${boardH}" xmlns="http://www.w3.org/2000/svg">
+  <defs>${roseDefs}</defs>
+  <rect width="${boardW}" height="${boardH}" fill="#fafafa"/>
+  <text x="${padX}" y="58" font-family="Zen Kaku Gothic New Black" font-size="38" fill="#d4567f">まいスピ ロゴマーク — 20種（ローズ統一）</text>
+  <text x="${padX}" y="90" font-family="Zen Kaku Gothic New" font-size="17" fill="#6b6479">色をローズに統一して形だけで比較（番号でご指定ください）</text>
+  ${roseCells}
+</svg>`;
+write(roseBoard, 'assets/brand/marks-20-rose.png');
