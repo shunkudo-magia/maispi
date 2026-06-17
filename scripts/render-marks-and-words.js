@@ -209,3 +209,24 @@ const roseBoard = `<svg width="${boardW}" height="${boardH}" viewBox="0 0 ${boar
   ${roseCells}
 </svg>`;
 write(roseBoard, 'assets/brand/marks-20-rose.png');
+
+// ===== 全ワードマークをローズで統一した一覧 =====
+let roseWordCells = '';
+WORD_STYLES.forEach((style, i) => {
+  const c = i % cols, row = Math.floor(i / cols);
+  const x = padX + c * (cellW + gapX), y = padTop + row * (cellH + gapY);
+  const num = String(i + 1).padStart(2, '0');
+  roseWordCells += `<g transform="translate(${x},${y})">
+    <rect width="${cellW}" height="${cellH}" rx="18" fill="#ffffff" stroke="#e8e0e8"/>
+    <text x="${cellW / 2}" y="${cellH / 2 + style.size * 0.36 - 8}" text-anchor="middle" font-family="${style.font}" font-size="${style.size}" letter-spacing="${style.sp}" fill="${ROSE.c2}">まいスピ</text>
+    <text x="${cellW / 2}" y="36" text-anchor="middle" font-family="Zen Kaku Gothic New" font-size="13" fill="#c8c0d0">${style.label}</text>
+    <text x="${cellW / 2}" y="180" text-anchor="middle" font-family="Zen Kaku Gothic New" font-size="14" fill="#9b92a4">${num}</text>
+  </g>`;
+});
+const roseWordBoard = `<svg width="${boardW}" height="${boardH}" viewBox="0 0 ${boardW} ${boardH}" xmlns="http://www.w3.org/2000/svg">
+  <rect width="${boardW}" height="${boardH}" fill="#fafafa"/>
+  <text x="${padX}" y="58" font-family="Zen Kaku Gothic New Black" font-size="38" fill="#d4567f">まいスピ ワードマーク — 20種（ローズ統一）</text>
+  <text x="${padX}" y="90" font-family="Zen Kaku Gothic New" font-size="17" fill="#6b6479">色をローズに統一して書体だけで比較（番号でご指定ください）</text>
+  ${roseWordCells}
+</svg>`;
+write(roseWordBoard, 'assets/brand/wordmarks-20-rose.png');
