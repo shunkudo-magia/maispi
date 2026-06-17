@@ -27,7 +27,7 @@ export default function DiagnosisResultScreen() {
 
   async function handleShare() {
     await Share.share({
-      message: `私のアーキタイプは「${archetype.name}」でした！\nまいすぴで占断を →`,
+      message: `私のアーキタイプは「${archetype.name}」でした！\nまいスピで占断を →`,
     });
   }
 

@@ -1,24 +1,5 @@
-<svg width="440" height="130" viewBox="0 0 440 130" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="まいすぴ">
-  <defs>
-    <linearGradient id="maispiCrescent" x1="20" y1="14" x2="70" y2="86" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#ef9bb8"/>
-      <stop offset="1" stop-color="#d4567f"/>
-    </linearGradient>
-    <linearGradient id="maispiSpark" x1="60" y1="32" x2="86" y2="58" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#ffd9e6"/>
-      <stop offset="1" stop-color="#f6a9c4"/>
-    </linearGradient>
-  </defs>
-
-  <!-- シンボルマーク -->
-  <g transform="translate(15,15)">
-    <path d="M62 16 A34 34 0 1 0 62 84 A50 50 0 0 1 62 16 Z" fill="url(#maispiCrescent)"/>
-    <path d="M73 31 Q75.3 47.7 88 50 Q75.3 52.3 73 69 Q70.7 52.3 58 50 Q70.7 47.7 73 31 Z" fill="url(#maispiSpark)"/>
-    <circle cx="84" cy="30" r="3" fill="#f6a9c4" opacity="0.9"/>
-    <circle cx="80" cy="70" r="2" fill="#f6a9c4" opacity="0.8"/>
-  </g>
-
-  <!-- ワードマーク（書き出し時に Shippori Mincho Bold が無い環境では別途アウトライン化推奨） -->
-  <text x="138" y="88" font-family="'Shippori Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif"
-        font-weight="700" font-size="64" letter-spacing="2" fill="#da668e">まいすぴ</text>
+<svg width="470" height="130" viewBox="0 0 470 130" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="まいスピ">
+  <defs><linearGradient id="mk" x1="20" y1="14" x2="80" y2="86" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ef9bb8"/><stop offset="1" stop-color="#d4567f"/></linearGradient></defs>
+  <g transform="translate(15,15)"><path d="M50.00 14.00 L81.18 68.00 L18.82 68.00 Z M50.00 86.00 L18.82 32.00 L81.18 32.00 Z " fill="url(#mk)"/><path d="M82 15 Q84.38 19.62 89 22 Q84.38 24.38 82 29 Q79.62 24.38 75 22 Q79.62 19.62 82 15 Z" fill="#f6a9c4"/></g>
+  <text x="138" y="86" font-family="'Rounded Mplus 1c Bold','Rounded Mplus 1c','Hiragino Maru Gothic ProN',sans-serif" font-weight="700" font-size="60" letter-spacing="10" fill="#d4567f">まいスピ</text>
 </svg>

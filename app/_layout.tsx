@@ -13,6 +13,7 @@ import {
   NotoSansJP_500Medium,
   NotoSansJP_700Bold,
 } from '@expo-google-fonts/noto-sans-jp';
+import { MPLUSRounded1c_700Bold } from '@expo-google-fonts/m-plus-rounded-1c';
 import { Colors } from '@/constants';
 
 SplashScreen.preventAutoHideAsync();
@@ -25,6 +26,7 @@ export default function RootLayout() {
     NotoSansJP_400Regular,
     NotoSansJP_500Medium,
     NotoSansJP_700Bold,
+    MPLUSRounded1c_700Bold,
   });
 
   useEffect(() => {

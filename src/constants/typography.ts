@@ -5,6 +5,8 @@ export const FontFamily = {
   sans: 'NotoSansJP_400Regular',
   sansMedium: 'NotoSansJP_500Medium',
   sansBold: 'NotoSansJP_700Bold',
+  // ブランドロゴ用（まいスピ ワードマーク）
+  roundedBold: 'MPLUSRounded1c_700Bold',
 } as const;
 
 export const FontSize = {

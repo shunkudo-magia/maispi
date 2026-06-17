@@ -1,16 +1,16 @@
 import React from 'react';
 import { View, StyleSheet, StyleProp, ViewStyle, TextStyle } from 'react-native';
-import Svg, { Defs, LinearGradient, Stop, Path, Circle, G } from 'react-native-svg';
+import Svg, { Defs, LinearGradient, Stop, Path } from 'react-native-svg';
 import { Typography } from '@/components/ui/Typography';
 import { Colors, FontFamily } from '@/constants';
 
 /**
- * まいすぴ ブランドロゴ
+ * まいスピ ブランドロゴ
  *
- * コンセプト:「三日月とひらめきの光」
- *   三日月 = 月齢占い・女性性・直感
- *   きらめき = スピリチュアルな気づき・内なる光
- * 三日月がそっときらめきを抱くシンボルマーク。
+ * コンセプト:「六芒星とひらめきの光」
+ *   六芒星 = 天と地・調和・スピリチュアルなシンボル
+ *   きらめき = 気づき・内なる光
+ * ワードマークは M+ Rounded（丸ゴシック）をゆったりした字間で。
  *
  * 形状はビューポート 0 0 100 100 を基準に定義。
  */
@@ -33,6 +33,10 @@ export interface LogoProps {
   accessibilityLabel?: string;
 }
 
+// 六芒星（上向き三角＋下向き三角）+ きらめき。0..100 ビューポート基準。
+const STAR_PATH = 'M50 14 L81.18 68 L18.82 68 Z M50 86 L18.82 32 L81.18 32 Z';
+const SPARK_PATH = 'M82 15 Q84.38 19.62 89 22 Q84.38 24.38 82 29 Q79.62 24.38 75 22 Q79.62 19.62 82 15 Z';
+
 /** シンボルマーク（SVG）単体。任意のサイズで描画可能。 */
 export function LogoMark({
   size = 40,
@@ -47,36 +51,21 @@ export function LogoMark({
   return (
     <Svg width={size} height={size} viewBox="0 0 100 100" style={style}>
       <Defs>
-        <LinearGradient id="maispiCrescent" x1="20" y1="14" x2="70" y2="86" gradientUnits="userSpaceOnUse">
+        <LinearGradient id="maispiStar" x1="20" y1="14" x2="80" y2="86" gradientUnits="userSpaceOnUse">
           <Stop offset="0" stopColor="#ef9bb8" />
           <Stop offset="1" stopColor="#d4567f" />
         </LinearGradient>
-        <LinearGradient id="maispiSpark" x1="60" y1="32" x2="86" y2="58" gradientUnits="userSpaceOnUse">
-          <Stop offset="0" stopColor="#ffd9e6" />
-          <Stop offset="1" stopColor="#f6a9c4" />
-        </LinearGradient>
       </Defs>
 
-      {/* 三日月（右側に開く） */}
-      <Path
-        d="M62 16 A34 34 0 1 0 62 84 A50 50 0 0 1 62 16 Z"
-        fill={solid ? color : 'url(#maispiCrescent)'}
-      />
+      {/* 六芒星 */}
+      <Path d={STAR_PATH} fill={solid ? color : 'url(#maispiStar)'} />
 
       {/* きらめき（四芒星のスパークル） */}
       <Path
-        d="M73 31
-           Q75.3 47.7 88 50
-           Q75.3 52.3 73 69
-           Q70.7 52.3 58 50
-           Q70.7 47.7 73 31 Z"
-        fill={solid ? color : 'url(#maispiSpark)'}
+        d={SPARK_PATH}
+        fill={solid ? color : '#f6a9c4'}
         opacity={solid ? 0.85 : 1}
       />
-
-      {/* 小さなアクセントのきらめき */}
-      <Circle cx="84" cy="30" r="3" fill={solid ? color : '#f6a9c4'} opacity={solid ? 0.7 : 0.9} />
-      <Circle cx="80" cy="70" r="2" fill={solid ? color : '#f6a9c4'} opacity={solid ? 0.6 : 0.8} />
     </Svg>
   );
 }
@@ -87,7 +76,7 @@ export function Logo({
   color,
   wordmarkColor = Colors.primary,
   style,
-  accessibilityLabel = 'まいすぴ',
+  accessibilityLabel = 'まいスピ',
 }: LogoProps) {
   if (variant === 'mark') {
     return (
@@ -98,7 +87,7 @@ export function Logo({
   }
 
   const wordmarkStyle: TextStyle = {
-    fontFamily: FontFamily.minchoBold,
+    fontFamily: FontFamily.roundedBold,
     color: wordmarkColor,
     includeFontPadding: false,
   };
@@ -114,10 +103,10 @@ export function Logo({
         <Typography
           style={[
             wordmarkStyle,
-            { fontSize: size * 0.62, lineHeight: size * 0.8, letterSpacing: size * 0.02 },
+            { fontSize: size * 0.6, lineHeight: size * 0.84, letterSpacing: size * 0.14 },
           ]}
         >
-          まいすぴ
+          まいスピ
         </Typography>
       </View>
     );
@@ -128,16 +117,16 @@ export function Logo({
     <View
       accessible
       accessibilityLabel={accessibilityLabel}
-      style={[styles.horizontal, { gap: size * 0.24 }, style]}
+      style={[styles.horizontal, { gap: size * 0.28 }, style]}
     >
       <LogoMark size={size} color={color} />
       <Typography
         style={[
           wordmarkStyle,
-          { fontSize: size * 0.66, lineHeight: size * 0.85, letterSpacing: size * 0.02 },
+          { fontSize: size * 0.64, lineHeight: size * 0.9, letterSpacing: size * 0.14 },
         ]}
       >
-        まいすぴ
+        まいスピ
       </Typography>
     </View>
   );

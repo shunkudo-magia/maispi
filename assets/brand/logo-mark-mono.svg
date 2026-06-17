@@ -1,7 +1,3 @@
-<svg width="200" height="200" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="まいすぴ ロゴマーク（単色）">
-  <!-- 単色版。currentColor を使うため CSS / 親要素から color を継承可能 -->
-  <path d="M62 16 A34 34 0 1 0 62 84 A50 50 0 0 1 62 16 Z" fill="currentColor"/>
-  <path d="M73 31 Q75.3 47.7 88 50 Q75.3 52.3 73 69 Q70.7 52.3 58 50 Q70.7 47.7 73 31 Z" fill="currentColor" opacity="0.85"/>
-  <circle cx="84" cy="30" r="3" fill="currentColor" opacity="0.7"/>
-  <circle cx="80" cy="70" r="2" fill="currentColor" opacity="0.6"/>
+<svg width="200" height="200" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="まいスピ ロゴマーク（単色）">
+  <path d="M50.00 14.00 L81.18 68.00 L18.82 68.00 Z M50.00 86.00 L18.82 32.00 L81.18 32.00 Z " fill="currentColor"/><path d="M82 15 Q84.38 19.62 89 22 Q84.38 24.38 82 29 Q79.62 24.38 75 22 Q79.62 19.62 82 15 Z" fill="currentColor" opacity="0.85"/>
 </svg>
