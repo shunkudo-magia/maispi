@@ -96,7 +96,7 @@ function png(svg, w, out) {
 png(FILES['app-icon.svg'], 1024, 'assets/icon.png');
 png(FILES['adaptive-icon-foreground.svg'], 1024, 'assets/adaptive-icon.png');
 png(FILES['notification-icon.svg'], 96, 'assets/notification-icon.png');
-png(FILES['logo-mark.svg'], 48, 'assets/favicon.png');
+// favicon は Web向けに視認性の高い配色版を render-web-assets.js で生成する
 png(FILES['logo-stacked.svg'], 520, 'assets/splash.png');
 
 // ============ 確認用プレビュー ============

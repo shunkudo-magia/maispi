@@ -46,3 +46,11 @@ const touch = `<svg width="180" height="180" viewBox="0 0 180 180" xmlns="http:/
   <g transform="translate(38,38) scale(1.04)">${mark('#ffffff', '#ffe3ee')}</g>
 </svg>`;
 png(touch, 180, 'public/apple-touch-icon.png');
+
+// --- favicon 256x256（ローズ地+白マーク・フルブリードで小サイズでも視認しやすく）---
+const fav = `<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="bg" x1="28" y1="20" x2="228" y2="240" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${ROSE.c1}"/><stop offset="1" stop-color="${ROSE.c2}"/></linearGradient></defs>
+  <rect width="256" height="256" rx="56" fill="url(#bg)"/>
+  <g transform="translate(18,33) scale(1.9)">${mark('#ffffff', '#ffe3ee')}</g>
+</svg>`;
+png(fav, 256, 'assets/favicon.png');

@@ -65,7 +65,9 @@ import { Logo, LogoMark } from '@/components/ui/Logo';
 | `assets/adaptive-icon.png` | `adaptive-icon-foreground.svg` | 1024×1024 |
 | `assets/notification-icon.png` | `notification-icon.svg` | 96×96 |
 | `assets/splash.png` | `logo-stacked.svg` | 任意（contain 表示） |
-| `assets/favicon.png` | `logo-mark.svg` | 48×48 |
+| `assets/favicon.png` | （ローズ地＋白マーク／`render-web-assets.js`） | 256×256 |
+| `public/og-image.png` | OGP（`render-web-assets.js`） | 1200×630 |
+| `public/apple-touch-icon.png` | iOSホーム追加用（`render-web-assets.js`） | 180×180 |
 
 ### 書き出しコマンド例
 
