@@ -1,12 +1,12 @@
 export const FontFamily = {
-  mincho: 'ShipporiMincho_400Regular',
-  minchoMedium: 'ShipporiMincho_500Medium',
-  minchoBold: 'ShipporiMincho_700Bold',
+  // 見出し・ロゴ（丸ゴシック / Zen Maru Gothic）
+  rounded: 'ZenMaruGothic_400Regular',
+  roundedMedium: 'ZenMaruGothic_500Medium',
+  roundedBold: 'ZenMaruGothic_700Bold',
+  // 本文（Noto Sans JP）
   sans: 'NotoSansJP_400Regular',
   sansMedium: 'NotoSansJP_500Medium',
   sansBold: 'NotoSansJP_700Bold',
-  // ブランドロゴ用（まいスピ ワードマーク）
-  roundedBold: 'MPLUSRounded1c_700Bold',
 } as const;
 
 export const FontSize = {

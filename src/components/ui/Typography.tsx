@@ -20,16 +20,16 @@ export function Typography({ variant = 'body', color, style, ...props }: Typogra
 
 const styles = StyleSheet.create({
   heading: {
-    fontFamily: FontFamily.minchoBold,
+    fontFamily: FontFamily.roundedBold,
     fontSize: FontSize.xl,
     color: Colors.text,
-    lineHeight: FontSize.xl * 1.3,
+    lineHeight: FontSize.xl * 1.35,
   },
   subheading: {
-    fontFamily: FontFamily.minchoMedium,
+    fontFamily: FontFamily.roundedBold,
     fontSize: FontSize.md,
     color: Colors.text,
-    lineHeight: FontSize.md * 1.4,
+    lineHeight: FontSize.md * 1.45,
   },
   body: {
     fontFamily: FontFamily.sans,

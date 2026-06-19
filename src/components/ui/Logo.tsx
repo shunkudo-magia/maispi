@@ -1,16 +1,16 @@
 import React from 'react';
 import { View, StyleSheet, StyleProp, ViewStyle, TextStyle } from 'react-native';
-import Svg, { Defs, LinearGradient, Stop, Path } from 'react-native-svg';
+import Svg, { Defs, LinearGradient, Stop, Path, Circle } from 'react-native-svg';
 import { Typography } from '@/components/ui/Typography';
 import { Colors, FontFamily } from '@/constants';
 
 /**
  * まいスピ ブランドロゴ
  *
- * コンセプト:「六芒星とひらめきの光」
- *   六芒星 = 天と地・調和・スピリチュアルなシンボル
- *   きらめき = 気づき・内なる光
- * ワードマークは M+ Rounded（丸ゴシック）をゆったりした字間で。
+ * コンセプト:「三日月と星屑」
+ *   三日月 = 月齢占い・女性性・直感
+ *   星屑（きらめき） = スピリチュアルな気づき・夜空に瞬く光
+ * ワードマークは Zen Maru Gothic（丸ゴシック）でやわらかく親しみやすく。
  *
  * 形状はビューポート 0 0 100 100 を基準に定義。
  */
@@ -33,9 +33,20 @@ export interface LogoProps {
   accessibilityLabel?: string;
 }
 
-// 六芒星（上向き三角＋下向き三角）+ きらめき。0..100 ビューポート基準。
-const STAR_PATH = 'M50 14 L81.18 68 L18.82 68 Z M50 86 L18.82 32 L81.18 32 Z';
-const SPARK_PATH = 'M82 15 Q84.38 19.62 89 22 Q84.38 24.38 82 29 Q79.62 24.38 75 22 Q79.62 19.62 82 15 Z';
+// 五芒星（星屑）パスを生成
+function star5(cx: number, cy: number, R: number, ratio = 0.45): string {
+  let d = '';
+  for (let k = 0; k < 10; k++) {
+    const a = ((-90 + k * 36) * Math.PI) / 180;
+    const rad = k % 2 ? R * ratio : R;
+    d += (k ? 'L' : 'M') + (cx + rad * Math.cos(a)).toFixed(2) + ' ' + (cy + rad * Math.sin(a)).toFixed(2) + ' ';
+  }
+  return d + 'Z';
+}
+
+const CRESCENT = 'M62 16 A34 34 0 1 0 62 84 A50 50 0 0 1 62 16 Z';
+const STAR_BIG = star5(76, 40, 11);
+const STAR_SMALL = star5(82, 64, 6);
 
 /** シンボルマーク（SVG）単体。任意のサイズで描画可能。 */
 export function LogoMark({
@@ -48,24 +59,24 @@ export function LogoMark({
   style?: StyleProp<ViewStyle>;
 }) {
   const solid = !!color;
+  const crescentFill = solid ? color : 'url(#maispiCrescent)';
+  const starFill = solid ? color : Colors.accent;
   return (
     <Svg width={size} height={size} viewBox="0 0 100 100" style={style}>
       <Defs>
-        <LinearGradient id="maispiStar" x1="20" y1="14" x2="80" y2="86" gradientUnits="userSpaceOnUse">
+        <LinearGradient id="maispiCrescent" x1="20" y1="14" x2="70" y2="86" gradientUnits="userSpaceOnUse">
           <Stop offset="0" stopColor="#ef9bb8" />
           <Stop offset="1" stopColor="#d4567f" />
         </LinearGradient>
       </Defs>
 
-      {/* 六芒星 */}
-      <Path d={STAR_PATH} fill={solid ? color : 'url(#maispiStar)'} />
+      {/* 三日月 */}
+      <Path d={CRESCENT} fill={crescentFill} />
 
-      {/* きらめき（四芒星のスパークル） */}
-      <Path
-        d={SPARK_PATH}
-        fill={solid ? color : '#f6a9c4'}
-        opacity={solid ? 0.85 : 1}
-      />
+      {/* 星屑 */}
+      <Path d={STAR_BIG} fill={starFill} />
+      <Path d={STAR_SMALL} fill={starFill} opacity={solid ? 0.85 : 0.9} />
+      <Circle cx="68" cy="74" r="2.5" fill={starFill} opacity={solid ? 0.7 : 0.8} />
     </Svg>
   );
 }
@@ -97,13 +108,13 @@ export function Logo({
       <View
         accessible
         accessibilityLabel={accessibilityLabel}
-        style={[styles.stacked, { gap: size * 0.18 }, style]}
+        style={[styles.stacked, { gap: size * 0.16 }, style]}
       >
         <LogoMark size={size} color={color} />
         <Typography
           style={[
             wordmarkStyle,
-            { fontSize: size * 0.6, lineHeight: size * 0.84, letterSpacing: size * 0.14 },
+            { fontSize: size * 0.64, lineHeight: size * 0.86, letterSpacing: size * 0.04 },
           ]}
         >
           まいスピ
@@ -117,13 +128,13 @@ export function Logo({
     <View
       accessible
       accessibilityLabel={accessibilityLabel}
-      style={[styles.horizontal, { gap: size * 0.28 }, style]}
+      style={[styles.horizontal, { gap: size * 0.22 }, style]}
     >
       <LogoMark size={size} color={color} />
       <Typography
         style={[
           wordmarkStyle,
-          { fontSize: size * 0.64, lineHeight: size * 0.9, letterSpacing: size * 0.14 },
+          { fontSize: size * 0.68, lineHeight: size * 0.92, letterSpacing: size * 0.04 },
         ]}
       >
         まいスピ

@@ -101,11 +101,11 @@ const styles = StyleSheet.create({
   featureCard: {
     width: '47%',
     padding: 16,
-    borderRadius: 12,
+    borderRadius: 18,
     gap: 6,
   },
   featureLabel: {
-    fontFamily: FontFamily.minchoBold,
+    fontFamily: FontFamily.roundedBold,
     fontSize: FontSize.md,
   },
   profileCard: { gap: 8 },

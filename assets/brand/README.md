@@ -4,13 +4,13 @@
 
 ## コンセプト（確定デザイン）
 
-> **「六芒星とひらめきの光」**
+> **「三日月と星屑」**
 
-- **六芒星（ヘキサグラム）** … 天と地の調和・スピリチュアルなシンボル
-- **きらめき（四芒星）** … 気づき・内なる光
-- ワードマークは丸ゴシックをゆったりした字間で、やわらかく親しみやすい印象に
+- **三日月** … 月齢占い・女性性・直感
+- **星屑（きらめき）** … スピリチュアルな気づき・夜空に瞬く光
+- ワードマークは丸ゴシックで、やわらかく親しみやすい印象に
 
-> 採用デザイン: マーク=六芒星＋きらめき／文字=M+ Rounded（字間広）／色=ローズ
+> 採用デザイン: マーク03=三日月＋星屑／文字03=Zen Maru Gothic／色=ローズ
 
 ## カラー
 
@@ -23,11 +23,12 @@
 | きらめき明 | ● | `#ffd9e6` |
 | きらめき／アクセント | ● | `#f6a9c4` |
 
-## 書体（ワードマーク）
+## 書体
 
-- **M+ Rounded 1c Bold**（丸ゴシック）／字間広め（letter-spacing 約 0.14em）
-- フォールバック: Hiragino Maru Gothic ProN / sans-serif
-- アプリ内では `FontFamily.roundedBold`（`MPLUSRounded1c_700Bold`）を使用
+- **見出し・ロゴ**: Zen Maru Gothic Bold（丸ゴシック）
+  - アプリ内では `FontFamily.roundedBold`（`ZenMaruGothic_700Bold`）
+  - フォールバック: Hiragino Maru Gothic ProN / sans-serif
+- **本文**: Noto Sans JP（`FontFamily.sans` 系）
 
 ## ファイル一覧
 

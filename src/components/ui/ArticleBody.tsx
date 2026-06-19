@@ -19,7 +19,7 @@ const tagsStyles = {
     marginTop: 0,
   },
   h2: {
-    fontFamily: FontFamily.minchoBold,
+    fontFamily: FontFamily.roundedBold,
     fontSize: FontSize.lg,
     color: Colors.text,
     marginTop: 28,
@@ -27,7 +27,7 @@ const tagsStyles = {
     lineHeight: FontSize.lg * 1.4,
   },
   h3: {
-    fontFamily: FontFamily.minchoMedium,
+    fontFamily: FontFamily.roundedBold,
     fontSize: FontSize.md,
     color: Colors.text,
     marginTop: 20,
@@ -47,9 +47,9 @@ const systemFonts = [
   FontFamily.sans,
   FontFamily.sansMedium,
   FontFamily.sansBold,
-  FontFamily.mincho,
-  FontFamily.minchoMedium,
-  FontFamily.minchoBold,
+  FontFamily.rounded,
+  FontFamily.roundedMedium,
+  FontFamily.roundedBold,
 ];
 
 export function ArticleBody({ html }: ArticleBodyProps) {

@@ -4,29 +4,27 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import {
   useFonts,
-  ShipporiMincho_400Regular,
-  ShipporiMincho_500Medium,
-  ShipporiMincho_700Bold,
-} from '@expo-google-fonts/shippori-mincho';
+  ZenMaruGothic_400Regular,
+  ZenMaruGothic_500Medium,
+  ZenMaruGothic_700Bold,
+} from '@expo-google-fonts/zen-maru-gothic';
 import {
   NotoSansJP_400Regular,
   NotoSansJP_500Medium,
   NotoSansJP_700Bold,
 } from '@expo-google-fonts/noto-sans-jp';
-import { MPLUSRounded1c_700Bold } from '@expo-google-fonts/m-plus-rounded-1c';
-import { Colors } from '@/constants';
+import { Colors, FontFamily } from '@/constants';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    ShipporiMincho_400Regular,
-    ShipporiMincho_500Medium,
-    ShipporiMincho_700Bold,
+    ZenMaruGothic_400Regular,
+    ZenMaruGothic_500Medium,
+    ZenMaruGothic_700Bold,
     NotoSansJP_400Regular,
     NotoSansJP_500Medium,
     NotoSansJP_700Bold,
-    MPLUSRounded1c_700Bold,
   });
 
   useEffect(() => {
@@ -39,10 +37,11 @@ export default function RootLayout() {
     <>
       <Stack
         screenOptions={{
-          headerStyle: { backgroundColor: Colors.white },
+          headerStyle: { backgroundColor: Colors.surface },
           headerTintColor: Colors.primary,
-          headerTitleStyle: { color: Colors.text },
+          headerTitleStyle: { color: Colors.text, fontFamily: FontFamily.roundedBold },
           headerShadowVisible: false,
+          contentStyle: { backgroundColor: Colors.backgroundAlt },
         }}
       >
         <Stack.Screen name="onboarding" options={{ headerShown: false }} />

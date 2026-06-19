@@ -89,13 +89,13 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   archetypeInitial: {
-    fontFamily: FontFamily.minchoBold,
+    fontFamily: FontFamily.roundedBold,
     fontSize: FontSize['3xl'],
     color: Colors.primary,
   },
   resultLabel: { color: Colors.primary },
   archetypeName: {
-    fontFamily: FontFamily.minchoBold,
+    fontFamily: FontFamily.roundedBold,
     fontSize: FontSize['2xl'],
     color: Colors.text,
   },

@@ -103,8 +103,8 @@ const styles = StyleSheet.create({
   question: { fontSize: FontSize.xl, lineHeight: FontSize.xl * 1.4 },
   options: { gap: 12 },
   option: {
-    padding: 16,
-    borderRadius: 12,
+    padding: 18,
+    borderRadius: 16,
     borderWidth: 1.5,
     borderColor: Colors.border,
     backgroundColor: Colors.white,

@@ -11,6 +11,7 @@ import { router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '@/components/ui/Button';
 import { Typography } from '@/components/ui/Typography';
+import { Logo, LogoMark } from '@/components/ui/Logo';
 import { Colors, FontSize } from '@/constants';
 
 const { width } = Dimensions.get('window');
@@ -62,7 +63,13 @@ export default function OnboardingScreen() {
       >
         {SLIDES.map((slide, i) => (
           <View key={i} style={[styles.slide, { backgroundColor: slide.bg, width }]}>
-            <View style={styles.illustrationPlaceholder} />
+            <View style={styles.illustration}>
+              {i === 0 ? (
+                <Logo variant="stacked" size={96} />
+              ) : (
+                <LogoMark size={108} />
+              )}
+            </View>
             <Typography variant="heading" style={styles.title}>{slide.title}</Typography>
             <Typography variant="body" style={styles.body}>{slide.body}</Typography>
           </View>
@@ -105,12 +112,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     paddingTop: 60,
   },
-  illustrationPlaceholder: {
+  illustration: {
     width: 240,
     height: 240,
     borderRadius: 120,
-    backgroundColor: Colors.primaryLight,
-    marginBottom: 40,
+    backgroundColor: 'rgba(255,255,255,0.7)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 44,
+    shadowColor: Colors.primaryDark,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.12,
+    shadowRadius: 24,
+    elevation: 3,
   },
   title: {
     fontSize: FontSize['2xl'],

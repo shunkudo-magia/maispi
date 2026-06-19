@@ -56,10 +56,10 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   label: {
-    fontFamily: FontFamily.sansMedium,
-    fontSize: FontSize.base,
+    fontFamily: FontFamily.roundedBold,
+    fontSize: FontSize.md,
     color: Colors.white,
-    letterSpacing: 0.3,
+    letterSpacing: 0.5,
   },
   labelAlt: {
     color: Colors.primary,
