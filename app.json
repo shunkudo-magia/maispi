@@ -26,7 +26,14 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "name": "まいスピ",
+      "shortName": "まいスピ",
+      "lang": "ja",
+      "display": "standalone",
+      "themeColor": "#da668e",
+      "backgroundColor": "#fbf4f7",
+      "description": "気圧・月齢・あなたの属性からパーソナルな運気を毎朝お届け。アーキタイプ診断や占いコラムも。まいスピ"
     },
     "plugins": [
       "expo-router",
