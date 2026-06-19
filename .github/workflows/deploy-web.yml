@@ -1,0 +1,42 @@
+name: Deploy Web (my-spi.com)
+
+# Web版（Expo Web 静的出力）のビルド検証と Vercel への本番デプロイ。
+# - すべての push / PR でビルド検証（dist 生成）を実行
+# - 下記 Secrets が設定されている場合のみ Vercel 本番デプロイを実行:
+#     VERCEL_TOKEN / VERCEL_ORG_ID / VERCEL_PROJECT_ID
+#   （Vercel を Git 連携している場合は本ワークフロー無しでも push で自動デプロイされます）
+
+on:
+  push:
+    branches: ['main', 'claude/great-mccarthy-OSaB7']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build web (static export)
+        run: npx expo export -p web
+
+      - name: Deploy to Vercel (production)
+        if: ${{ env.VERCEL_TOKEN != '' && github.event_name != 'pull_request' }}
+        run: |
+          npm i -g vercel@latest
+          vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+          vercel build --prod --token="$VERCEL_TOKEN"
+          vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
