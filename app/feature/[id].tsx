@@ -3,6 +3,7 @@ import { ScrollView, View, StyleSheet, TouchableOpacity, ActivityIndicator } fro
 import { useLocalSearchParams, router, useNavigation } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Typography } from '@/components/ui/Typography';
+import { SeoHead } from '@/components/seo/SeoHead';
 import { Colors, CategoryColors, CategoryKey, FontFamily, FontSize } from '@/constants';
 import { getFeature, getArticlesByFeature, type Feature, type Article } from '@/lib/cms';
 
@@ -30,6 +31,15 @@ export default function FeatureScreen() {
 
   return (
     <SafeAreaView style={styles.root} edges={['bottom']}>
+      <SeoHead
+        title={feature ? `${feature.title}｜まいスピの特集` : '特集｜まいスピ'}
+        description={
+          feature
+            ? `${feature.subtitle} ${cat.label}にまつわる特集記事を、まいスピがお届けします。`
+            : 'まいスピの月間特集ページです。'
+        }
+        path={`/feature/${id}`}
+      />
       {loading ? (
         <ActivityIndicator color={Colors.primary} style={styles.spinner} />
       ) : (

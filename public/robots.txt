@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /diagnosis/flow
+Disallow: /diagnosis/result
+Disallow: /log
+Disallow: /settings
+
+Sitemap: https://my-spi.com/sitemap.xml

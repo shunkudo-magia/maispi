@@ -1,8 +1,12 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "expo export -p web",
+  "buildCommand": "expo export -p web && node scripts/generate-sitemap.js",
   "outputDirectory": "dist",
   "framework": null,
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/article/:id", "destination": "/article/[id].html" },
+    { "source": "/feature/:id", "destination": "/feature/[id].html" }
+  ]
 }

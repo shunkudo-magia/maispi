@@ -4,6 +4,7 @@ import { router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Typography } from '@/components/ui/Typography';
 import { Card } from '@/components/ui/Card';
+import { SeoHead } from '@/components/seo/SeoHead';
 import { Colors, FontFamily, FontSize } from '@/constants';
 
 const DIAGNOSIS_TYPES = [
@@ -26,6 +27,11 @@ const DIAGNOSIS_TYPES = [
 export default function DiagnosisScreen() {
   return (
     <SafeAreaView style={styles.root} edges={['top']}>
+      <SeoHead
+        title="アーキタイプ診断｜まいスピ"
+        description="3問・約2分でわかる無料のアーキタイプ診断。あなたの内なる本質を多角的に読み解く、まいスピの人気診断コンテンツ。"
+        path="/diagnosis"
+      />
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <Typography variant="heading" style={styles.pageTitle}>診断</Typography>
         <Typography variant="caption" style={styles.intro}>

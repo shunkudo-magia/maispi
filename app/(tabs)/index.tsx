@@ -6,13 +6,17 @@ import { FortuneCard } from '@/components/home/FortuneCard';
 import { Card } from '@/components/ui/Card';
 import { Typography } from '@/components/ui/Typography';
 import { Logo } from '@/components/ui/Logo';
+import { SeoHead } from '@/components/seo/SeoHead';
 import { Colors, CategoryColors, CategoryKey, FontFamily, FontSize } from '@/constants';
 import { useMoonAge } from '@/hooks/useMoonAge';
 import { getMoonPhaseName } from '@/utils/fortune';
 
+// 社内方針(2026年6月〜7月の定例MTG)により、恋愛中心から金運・開運を軸とした
+// 総合メディアへ比重を移す方針が決定されているため、特集の並び順を金運/開運優先に変更。
 const FEATURES: { id: string; category: CategoryKey; title: string; count: number }[] = [
-  { id: 'love',   category: 'love',   title: 'LOVEの特集',   count: 4 },
   { id: 'money',  category: 'money',  title: 'MONEYの特集',  count: 4 },
+  { id: 'spirit', category: 'spirit', title: 'SPIRITの特集', count: 4 },
+  { id: 'love',   category: 'love',   title: 'LOVEの特集',   count: 4 },
   { id: 'family', category: 'family', title: 'FAMILYの特集', count: 4 },
   { id: 'body',   category: 'body',   title: 'BODYの特集',   count: 4 },
 ];
@@ -23,6 +27,11 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.root} edges={['top']}>
+      <SeoHead
+        title="まいスピ｜気圧・月齢からわかる毎朝のパーソナル運気診断"
+        description="気圧・月齢・あなたの属性からパーソナルな運気を毎朝お届け。アーキタイプ診断や恋愛・金運・家族・カラダの占いコラムも読めるスピリチュアル・ナビ「まいスピ」。"
+        path="/"
+      />
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View style={styles.header}>

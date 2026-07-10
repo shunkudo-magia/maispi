@@ -3,6 +3,7 @@ import { ScrollView, View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Typography } from '@/components/ui/Typography';
 import { Card } from '@/components/ui/Card';
+import { SeoHead } from '@/components/seo/SeoHead';
 import { Colors, FontFamily, FontSize } from '@/constants';
 
 // Placeholder 30-day mock data
@@ -17,6 +18,12 @@ const CHART_HEIGHT = 100;
 export default function LogScreen() {
   return (
     <SafeAreaView style={styles.root} edges={['top']}>
+      <SeoHead
+        title="ログ｜まいスピ"
+        description="あなたの運気の推移とタロット履歴を確認できるページです。"
+        path="/log"
+        noindex
+      />
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <Typography variant="heading" style={styles.pageTitle}>ログ</Typography>
 
