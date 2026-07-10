@@ -11,9 +11,12 @@ import { Colors, CategoryColors, CategoryKey, FontFamily, FontSize } from '@/con
 import { useMoonAge } from '@/hooks/useMoonAge';
 import { getMoonPhaseName } from '@/utils/fortune';
 
+// 社内方針(2026年6月〜7月の定例MTG)により、恋愛中心から金運・開運を軸とした
+// 総合メディアへ比重を移す方針が決定されているため、特集の並び順を金運/開運優先に変更。
 const FEATURES: { id: string; category: CategoryKey; title: string; count: number }[] = [
-  { id: 'love',   category: 'love',   title: 'LOVEの特集',   count: 4 },
   { id: 'money',  category: 'money',  title: 'MONEYの特集',  count: 4 },
+  { id: 'spirit', category: 'spirit', title: 'SPIRITの特集', count: 4 },
+  { id: 'love',   category: 'love',   title: 'LOVEの特集',   count: 4 },
   { id: 'family', category: 'family', title: 'FAMILYの特集', count: 4 },
   { id: 'body',   category: 'body',   title: 'BODYの特集',   count: 4 },
 ];
