@@ -3,6 +3,7 @@ import { ScrollView, View, StyleSheet, Switch, TouchableOpacity } from 'react-na
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Typography } from '@/components/ui/Typography';
 import { Card } from '@/components/ui/Card';
+import { SeoHead } from '@/components/seo/SeoHead';
 import { Colors, FontFamily, FontSize } from '@/constants';
 
 export default function SettingsScreen() {
@@ -12,6 +13,12 @@ export default function SettingsScreen() {
 
   return (
     <SafeAreaView style={styles.root} edges={['top']}>
+      <SeoHead
+        title="設定｜まいスピ"
+        description="通知やアカウントの設定を行うページです。"
+        path="/settings"
+        noindex
+      />
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <Typography variant="heading" style={styles.pageTitle}>設定</Typography>
 

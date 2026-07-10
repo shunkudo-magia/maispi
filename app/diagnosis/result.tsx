@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Typography } from '@/components/ui/Typography';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { SeoHead } from '@/components/seo/SeoHead';
 import { Colors, FontFamily, FontSize } from '@/constants';
 
 // Archetype map (placeholder — replace with real scoring logic)
@@ -33,6 +34,12 @@ export default function DiagnosisResultScreen() {
 
   return (
     <SafeAreaView style={styles.root} edges={['bottom']}>
+      <SeoHead
+        title={`${archetype.name}タイプ｜アーキタイプ診断結果｜まいスピ`}
+        description={archetype.desc}
+        path="/diagnosis/result"
+        noindex
+      />
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         {/* Result hero */}
         <View style={styles.hero}>

@@ -4,6 +4,7 @@ import { useLocalSearchParams, useNavigation } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Typography } from '@/components/ui/Typography';
 import { ArticleBody } from '@/components/ui/ArticleBody';
+import { SeoHead, SITE_URL, SITE_NAME, stripHtml } from '@/components/seo/SeoHead';
 import { Colors, CategoryColors, CategoryKey, FontSize } from '@/constants';
 import { getArticle, type Article } from '@/lib/cms';
 
@@ -47,8 +48,28 @@ export default function ArticleScreen() {
     );
   }
 
+  const ogImage = article.thumbnail ? `${article.thumbnail.url}?w=1200` : undefined;
+
   return (
     <SafeAreaView style={styles.root} edges={['bottom']}>
+      <SeoHead
+        title={`${article.title}｜まいスピ`}
+        description={stripHtml(article.body)}
+        path={`/article/${id}`}
+        ogImage={ogImage}
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: article.title,
+          description: stripHtml(article.body),
+          image: ogImage ?? `${SITE_URL}/og-image.png`,
+          datePublished: article.publishedAt,
+          dateModified: article.revisedAt ?? article.updatedAt,
+          author: { '@type': 'Organization', name: SITE_NAME },
+          publisher: { '@type': 'Organization', name: SITE_NAME },
+          mainEntityOfPage: `${SITE_URL}/article/${id}`,
+        }}
+      />
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         {/* Hero image */}
         {article.thumbnail ? (

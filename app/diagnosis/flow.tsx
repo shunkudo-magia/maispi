@@ -4,6 +4,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Typography } from '@/components/ui/Typography';
 import { Button } from '@/components/ui/Button';
+import { SeoHead } from '@/components/seo/SeoHead';
 import { Colors, FontFamily, FontSize } from '@/constants';
 
 const SIMPLE_QUESTIONS = [
@@ -49,6 +50,12 @@ export default function DiagnosisFlowScreen() {
 
   return (
     <SafeAreaView style={styles.root} edges={['bottom']}>
+      <SeoHead
+        title="診断フロー｜まいスピ"
+        description="アーキタイプ診断に回答するページです。"
+        path="/diagnosis/flow"
+        noindex
+      />
       <View style={styles.progressBar}>
         <View style={[styles.progressFill, { width: `${progress}%` }]} />
       </View>

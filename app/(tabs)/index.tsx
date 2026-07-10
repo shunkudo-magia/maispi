@@ -6,6 +6,7 @@ import { FortuneCard } from '@/components/home/FortuneCard';
 import { Card } from '@/components/ui/Card';
 import { Typography } from '@/components/ui/Typography';
 import { Logo } from '@/components/ui/Logo';
+import { SeoHead } from '@/components/seo/SeoHead';
 import { Colors, CategoryColors, CategoryKey, FontFamily, FontSize } from '@/constants';
 import { useMoonAge } from '@/hooks/useMoonAge';
 import { getMoonPhaseName } from '@/utils/fortune';
@@ -23,6 +24,11 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.root} edges={['top']}>
+      <SeoHead
+        title="まいスピ｜気圧・月齢からわかる毎朝のパーソナル運気診断"
+        description="気圧・月齢・あなたの属性からパーソナルな運気を毎朝お届け。アーキタイプ診断や恋愛・金運・家族・カラダの占いコラムも読めるスピリチュアル・ナビ「まいスピ」。"
+        path="/"
+      />
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View style={styles.header}>

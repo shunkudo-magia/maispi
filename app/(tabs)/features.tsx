@@ -3,6 +3,7 @@ import { ScrollView, View, StyleSheet, TouchableOpacity, ActivityIndicator } fro
 import { router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Typography } from '@/components/ui/Typography';
+import { SeoHead } from '@/components/seo/SeoHead';
 import { Colors, CategoryColors, CategoryKey, FontFamily, FontSize } from '@/constants';
 import { getFeatures, type Feature } from '@/lib/cms';
 
@@ -20,6 +21,11 @@ export default function FeaturesScreen() {
 
   return (
     <SafeAreaView style={styles.root} edges={['top']}>
+      <SeoHead
+        title="今月の特集一覧｜まいスピ"
+        description="恋愛・金運・家族・カラダの4カテゴリでお届けする、まいスピの月間特集記事一覧。月齢や星の巡りをテーマにしたコラムを毎月更新。"
+        path="/features"
+      />
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <Typography variant="heading" style={styles.pageTitle}>特集</Typography>
 
